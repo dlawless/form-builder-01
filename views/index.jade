@@ -1,3 +1,26 @@
-//
-   Created by Derek on 12/25/2014.
-
+doctype html
+html(ng-app='TestApp')
+   head
+      title= title
+      link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css", rel="stylesheet")
+      link(rel='stylesheet', href='/stylesheets/style.css')
+      include ./externals.jade
+      script(type='text/javascript', src='/javascripts/testApp.js')
+   body(ng-controller='ModalDemoCtrl')
+      //block content
+      h1 Hello World
+      div.ng-view
+      script(type='text/ng-template', id='myModalContent.html')
+         div.modal-header
+            h3.modal-title I'm a modal!
+         div.modal-body
+            ul
+               li(ng-repeat='item in items')
+                  a(ng-click='selected.item = item') {{item}}
+         div.modal-footer
+            button.btn.btn-primary(ng-click='ok()') OK
+            button.btn.btn-warning(ng-click='cancel()') Cancel
+      button.btn.btn-default(ng-click='open()') Open me!
+      button.btn.btn-default(ng-click='open("lg")') Large modal
+      button.btn.btn-default(ng-click='open("sm")') Small modal
+      div(ng-show='selected') Selection from a modal: {{selected}}
