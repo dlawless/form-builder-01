@@ -17,7 +17,7 @@ router.get('/forms', function(req, res) {
 });
 
 router.get('/forms/:id', function(req, res) {
-    db.collection('forms').find({_id:req.params.id}, function(err, result) {
+    db.collection('forms').findById({_id:req.params.id}, function(err, result) {
        res.send(result);
     });
 });
