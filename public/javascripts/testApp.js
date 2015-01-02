@@ -8,7 +8,7 @@ var testApp = angular.module('TestApp', ['ngRoute','ui.bootstrap']);
 //});
 
 testApp.controller('ModalDemoCtrl', function($scope, $modal) {
-    $scope.items = ['item1', 'item2', 'item3'];
+    $scope.items = ['item1', 'item2', 'item3', 'item4'];
 
     $scope.open = function(size) {
         var modalInstance = $modal.open({
