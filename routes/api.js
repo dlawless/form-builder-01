@@ -23,4 +23,34 @@ router.get('/forms/:id', function(req, res) {
     });
 });
 
+router.put('/forms/:id', function(req, res) {
+    var form = req.body;
+    form._id = new ObjectID(form._id);
+    db.collection('forms').updateById(req.params.id, {$set:req.body}, {safe:true, multi:false}, function(err, result) {
+        if(err) {
+            console.log('err: ' + JSON.stringify(err, null, 2));
+        }
+        res.send((result===1)?{msg:'success'}:{msg:'error'});
+    })
+});
+
+router.post('/forms', function(req, res) {
+   db.collection('forms').insert(req.body, function(err, result) {
+       if(err){
+           res.send({msg: err})
+       }
+
+       res.send(result);
+   });
+});
+
+router.get('/dataTypes', function(req, res) {
+    var dataTypes = [
+        {name:'text'},
+        {name:'number'},
+        {name:'date'}
+    ];
+    res.send(dataTypes);
+});
+
 module.exports = router;

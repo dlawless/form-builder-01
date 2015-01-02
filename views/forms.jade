@@ -5,11 +5,17 @@ html(ng-app='FormBuilderApp')
       link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css", rel="stylesheet")
       link(rel='stylesheet', href='/stylesheets/style.css')
       include ./externals.jade
-      script(type='text/javascript', src='/javascripts/form-builder-app.js')
-   body
+      script(type='text/javascript', src='/javascripts/FormBuilderApp.js')
+   body.container
       //block content
       h1 Form Builder
-      div.ng-view
+      nav.nav.navbar-default
+         ul.nav.navbar-nav
+            li
+              a(href='#/new') New
+            li
+              a(href='#/list') List
+      div.ng-view(style='margin-top: 20px;')
       script(type='text/ng-template', id='list-template.html')
         include ./form-list-table.jade
       script(type='text/ng-template', id='detail-template.html')

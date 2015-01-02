@@ -1,0 +1,22 @@
+doctype html
+html(ng-app='FormRenderApp')
+   head
+      title= title
+      link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css", rel="stylesheet")
+      link(rel='stylesheet', href='/stylesheets/style.css')
+      include ./externals.jade
+      script(type='text/javascript', src='/javascripts/FormRenderApp.js')
+      script var id = !{JSON.stringify(id)}
+   body.container
+      //block content
+      div.ng-view(style='margin-top: 20px;')
+      script(type='text/ng-template', id='default-template.html')
+        h1 This is not the form you're looking for...
+      script(type='text/ng-template', id='render-template.html')
+        //include ./form-detail.jade
+        form.form(name='submitForm', novalidate)
+          h1 {{data.form.displayName}}
+          div.form-group(ng-repeat='field in data.form.fields | orderBy: "ordinal"')
+            label.control-label {{field.displayName}}
+            input.form-control(type='text', name='{{field.name}}', ng-model='field.value', ng-required='{{field.required}}')
+        pre {{data.form | json}}

@@ -1,4 +1,57 @@
-form.form(name='detailForm', novalidate)
-  div.form-group
-    label.control-label Name
-    input.form-control(type='text', ng-model='name')
+form.form(name='detailForm', ng-submit='saveForm()', novalidate)
+  div.row
+    div.col-sm-6
+      div.form-group
+        label.control-label Name
+        input.form-control(type='text', ng-model='form.name', required)
+      div.form-group
+        label.control-label Display Name
+        input.form-control(type='text', ng-model='form.displayName', required)
+  table.table.table-fixed
+    thead
+      tr
+        th(style='max-width: 100px;') Name
+        th(style='max-width: 100px;') Display Name
+        th(style='max-width: 75px;') Data Type
+        th(style='max-width: 20px;') Ordinal
+        th(style='max-width: 20px;') Required
+        th
+    tbody
+      tr(ng-repeat='field in form.fields | orderBy: "ordinal"', required)
+        td(style='max-width: 100px;')
+          input.form-control(type='text', ng-model='field.name', required)
+        td(style='max-width: 100px;')
+          input.form-control(type='text', ng-model='field.displayName', required)
+        td(style='max-width: 75px;')
+          select.form-control(ng-options='dataType.name as dataType.name for dataType in dataTypes', ng-model='field.dataType', required)
+        td(style='max-width: 20px;')
+          input.form-control(type='text', ng-model='field.ordinal', required)
+        td.text-center(style='max-width: 20px;')
+          input(type='checkbox', ng-model='field.required')
+        td(style='max-width: 30px;') &nbsp;
+          button.btn.btn-danger.btn-sm(type='button', ng-click='removeField(field)') Delete
+  button.btn.btn-success Save
+form(name='newFieldForm', novalidate)
+  table.table.table-fixed
+    thead
+      tr
+        th(style='max-width: 100px;') Name
+        th(style='max-width: 100px;') Display Name
+        th(style='max-width: 75px;') Data Type
+        th(style='max-width: 20px;') Ordinal
+        th(style='max-width: 20px;') Required
+        th
+    tbody
+      tr
+        td(style='max-width: 100px;')
+          input.form-control(type='text', ng-model='newField.name', required)
+        td(style='max-width: 100px;')
+          input.form-control(type='text', ng-model='newField.displayName', required)
+        td(style='max-width: 75px;')
+          select.form-control(ng-options='dataType.name as dataType.name for dataType in dataTypes', ng-model='newField.dataType', required)
+        td(style='max-width: 20px;')
+          input.form-control(type='text', ng-model='newField.ordinal', required)
+        td.text-center(style='max-width: 20px;')
+          input(type='checkbox', ng-model='newField.required')
+        td(style='max-width: 30px;')
+          button.btn.btn-primary.btn-sm(type='button', ng-click='addField(newField)', ng-disabled='newFieldForm.$invalid') Add

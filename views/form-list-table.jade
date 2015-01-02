@@ -8,4 +8,5 @@ table.table.table-striped.table-condensed
       td {{form.name}}
       td {{form.displayName}}
       td
-        a(href='#/details/{{form._id}}') Details
+        a(href='#/edit/{{form._id}}') Edit |
+        a(href='/formRender/{{form._id}}', target='_blank') Preview

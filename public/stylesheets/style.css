@@ -1,2 +1,27 @@
-body    { padding-top:50px; }
-.container .jumbotron    { border-radius:40px; }
+body    {
+    padding-top:50px;
+}
+
+.container .jumbotron    {
+    border-radius:40px;
+}
+
+.table-fixed {
+    min-width: 900px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+.ng-invalid {
+    border-color: red;
+}
+
+.ng-valid {
+    border-color: green;
+}

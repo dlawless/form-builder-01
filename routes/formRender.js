@@ -4,8 +4,8 @@ var router = express.Router();
 
 
 /* GET home page. */
-router.get('/', function(req, res) {
-    res.render('forms', { title: 'Form Builder' });
+router.get('/:id', function(req, res) {
+    res.render('formRender', { title: 'Form Builder', id: req.params.id });
 });
 
 module.exports = router;
