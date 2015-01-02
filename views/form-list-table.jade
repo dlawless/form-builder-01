@@ -7,3 +7,5 @@ table.table.table-striped.table-condensed
     tr(ng-repeat='form in forms')
       td {{form.name}}
       td {{form.displayName}}
+      td
+        a(href='/details/{{form._id}}') Details
