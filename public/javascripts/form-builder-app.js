@@ -6,6 +6,10 @@ FormBuidlerApp.config(function($routeProvider){
             templateUrl: 'list-template.html',
             controller: 'ListCtrl'
         })
+        .when('/details/:id', {
+            templateUrl: 'detail-template.html',
+            controller: 'DetailCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });
