@@ -11,12 +11,6 @@ html(ng-app='FormBuilderApp')
       h1 Form Builder
       div.ng-view
       script(type='text/ng-template', id='list-template.html')
-        h1 List Template
-        table.table.table-striped.table-condensed
-          thead
-            tr
-              th Name
-          tbody
-            tr(ng-repeat='form in forms')
-              td {{form.name}}
+        include ./form-list-table.jade
+
 
