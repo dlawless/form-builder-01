@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var api = require('./routes/api');
+var forms = require('./routes/forms');
 
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/api', api);
+app.use('/forms', forms);
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
