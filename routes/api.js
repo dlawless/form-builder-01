@@ -48,9 +48,19 @@ router.get('/dataTypes', function(req, res) {
     var dataTypes = [
         {name:'text'},
         {name:'number'},
-        {name:'date'}
+        {name:'date'},
+        {name:'list'}
     ];
     res.send(dataTypes);
+});
+
+router.post('/formResponses', function(req, res){
+    db.collection('formResponses').insert(req.body, function(err, result) {
+        if(err) {
+            res.send({msg: err});
+        }
+        res.send(result);
+    });
 });
 
 module.exports = router;

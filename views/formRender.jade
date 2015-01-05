@@ -14,9 +14,9 @@ html(ng-app='FormRenderApp')
         h1 This is not the form you're looking for...
       script(type='text/ng-template', id='render-template.html')
         //include ./form-detail.jade
-        form.form(name='submitForm', novalidate)
+        form.form(name='submitForm', ng-submit='saveForm()' novalidate)
           h1 {{data.form.displayName}}
           div.form-group(ng-repeat='field in data.form.fields | orderBy: "ordinal"')
             label.control-label {{field.displayName}}
             input.form-control(type='text', name='{{field.name}}', ng-model='field.value', ng-required='{{field.required}}', placeholder='{{field.placeholder}}')
-          button.btn.btn-success(type='button', ng-disabled='submitForm.$invalid') Submit
+          button.btn.btn-success(type='submit', ng-disabled='submitForm.$invalid') Submit

@@ -7,56 +7,56 @@ form.form(name='detailForm', ng-submit='saveForm()', novalidate)
       div.form-group
         label.control-label Display Name
         input.form-control(type='text', ng-model='form.displayName', required)
-  table.table.table-fixed
-    thead
-      tr
-        th(style='max-width: 5px;')
-        th(style='max-width: 60px;') Name
-        th(style='max-width: 60px;') Display Name
-        th(style='max-width: 55px;') Data Type
-        th(style='max-width: 15px;') Ordinal
-        th(style='max-width: 30px;') Required
-        th
-    tbody(ui-sortable='sortableOptions', ng-model='form.fields')
-      tr(ng-repeat='field in form.fields')
-        td(style='max-width: 5px;')
-          span.glyphicon.glyphicon-resize-vertical(aria-hidden='true')
-        td(style='max-width: 60px;')
-          input.form-control(type='text', ng-model='field.name', required)
-        td(style='max-width: 60px;')
-          input.form-control(type='text', ng-model='field.displayName', required)
-        td(style='max-width: 55px;')
-          select.form-control(ng-options='dataType.name as dataType.name for dataType in dataTypes', ng-model='field.dataType', required)
-        td(style='max-width: 15px;')
-          input.form-control(type='text', ng-model='field.ordinal', required)
-        td.text-center(style='max-width: 20px;')
-          input(type='checkbox', ng-model='field.required')
-        td(style='max-width: 30px;')
-          button.btn.btn-danger.btn-sm(type='button', ng-click='removeField(field)')
-            span.glyphicon.glyphicon-remove(aria-hidden='true')
-  button.btn.btn-primary Save
-  pre {{form.fields | json}}
-form(name='newFieldForm', novalidate)
-  table.table.table-fixed
-    thead
-      tr
-        th(style='max-width: 60px;') Name
-        th(style='max-width: 60px;') Display Name
-        th(style='max-width: 55px;') Data Type
-        th(style='max-width: 15px;') Ordinal
-        th(style='max-width: 20px;') Required
-        th
-    tbody
-      tr
-        td(style='max-width: 60px;')
-          input.form-control(type='text', ng-model='newField.name', required)
-        td(style='max-width: 60px;')
-          input.form-control(type='text', ng-model='newField.displayName', required)
-        td(style='max-width: 55px;')
-          select.form-control(ng-options='dataType.name as dataType.name for dataType in dataTypes', ng-model='newField.dataType', required)
-        td(style='max-width: 15px;')
-          input.form-control(type='text', ng-model='newField.ordinal', required)
-        td.text-center(style='max-width: 20px;')
-          input(type='checkbox', ng-model='newField.required')
-        td(style='max-width: 30px;')
-          button.btn.btn-success.btn-sm(type='button', ng-click='addField(newField)', ng-disabled='newFieldForm.$invalid') Add
+  fieldset
+    legend Fields
+    table.table.table-fixed
+      thead
+        tr
+          th(style='max-width: 5px;')
+          th(style='max-width: 60px;') Name
+          th(style='max-width: 60px;') Display Name
+          th(style='max-width: 55px;') Data Type
+          th(style='max-width: 30px;') Required
+          th
+      tbody(ui-sortable='sortableOptions', ng-model='form.fields')
+        tr(ng-repeat='field in form.fields')
+          td(style='max-width: 5px;')
+            span.glyphicon.glyphicon-resize-vertical(aria-hidden='true')
+          td(style='max-width: 60px;')
+            input.form-control(type='text', ng-model='field.name', required)
+          td(style='max-width: 60px;')
+            input.form-control(type='text', ng-model='field.displayName', required)
+          td(style='max-width: 55px;')
+            select.form-control(ng-options='dataType.name as dataType.name for dataType in dataTypes', ng-model='field.dataType', required)
+          td.text-center(style='max-width: 20px;')
+            input(type='checkbox', ng-model='field.required')
+          td(style='max-width: 30px;')
+            button.btn.btn-danger.btn-sm(type='button', ng-click='removeField(field)')
+              span.glyphicon.glyphicon-remove(aria-hidden='true')
+            button.btn.btn-success.btn-sm(type='button', ng-click='addListItems(field)', ng-show='field.dataType == "list"')
+              span.glyphicon.glyphicon-plus(aria-hidden='true')
+  button.btn.btn-primary(ng-disabled='detailForm.$invalid') Save
+  //pre {{form.fields | json}}
+fieldset(style='margin-top: 20px;')
+  legend Add a Field
+  form(name='newFieldForm', novalidate)
+    table.table.table-fixed
+      thead
+        tr
+          th(style='max-width: 60px;') Name
+          th(style='max-width: 60px;') Display Name
+          th(style='max-width: 55px;') Data Type
+          th(style='max-width: 20px;') Required
+          th
+      tbody
+        tr
+          td(style='max-width: 60px;')
+            input.form-control(type='text', ng-model='newField.name', required)
+          td(style='max-width: 60px;')
+            input.form-control(type='text', ng-model='newField.displayName', required)
+          td(style='max-width: 55px;')
+            select.form-control(ng-options='dataType.name as dataType.name for dataType in dataTypes', ng-model='newField.dataType', required)
+          td.text-center(style='max-width: 20px;')
+            input(type='checkbox', ng-model='newField.required')
+          td(style='max-width: 30px;')
+            button.btn.btn-success.btn-sm(type='button', ng-click='addField(newField)', ng-disabled='newFieldForm.$invalid') Add

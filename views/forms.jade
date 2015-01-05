@@ -7,6 +7,7 @@ html(ng-app='FormBuilderApp')
       include ./externals.jade
       script(type='text/javascript', src='/javascripts/sortable.js')
       script(type='text/javascript', src='/javascripts/FormBuilderApp.js')
+      script(type='text/javascript', src='/javascripts/DetailCtrl.js')
    body.container
       //block content
       h1 Form Builder
@@ -21,5 +22,7 @@ html(ng-app='FormBuilderApp')
         include ./form-list-table.jade
       script(type='text/ng-template', id='detail-template.html')
         include ./form-detail.jade
+      script(type='text/ng-template', id='field-list-items.html')
+        include ./field-list-items.jade
 
 
