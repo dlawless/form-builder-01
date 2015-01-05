@@ -63,4 +63,14 @@ router.post('/formResponses', function(req, res){
     });
 });
 
+router.get('/formResponses/:id', function(req, res) {
+    db.collection('formResponses').find({parentId: req.params.id}).toArray(function(err, results) {
+        if(err) {
+            res.send({msg: err});
+        }
+        res.send(results);
+    });
+});
+
+
 module.exports = router;

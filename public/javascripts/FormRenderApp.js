@@ -6,6 +6,10 @@ FormRenderApp.config(function($routeProvider){
            templateUrl: 'render-template.html',
            controller: 'MainCtrl'
        })
+       .when('/thanks' , {
+           templateUrl: 'thanks-for-submitting-template.html',
+           controller: 'MainCtrl'
+       })
        .otherwise({
            redirectTo: '/'
        });
@@ -27,6 +31,7 @@ FormRenderApp.controller('MainCtrl', function($scope, $http, $location) {
         console.log($scope.data.form);
         $http.post('/api/formResponses/', $scope.data.form).success(function(result){
             console.log(result);
+            $location.path('/thanks');
         }).error(function(err) {
             console.log('err: ' + err);
         });
