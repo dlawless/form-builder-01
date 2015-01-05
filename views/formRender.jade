@@ -18,5 +18,5 @@ html(ng-app='FormRenderApp')
           h1 {{data.form.displayName}}
           div.form-group(ng-repeat='field in data.form.fields | orderBy: "ordinal"')
             label.control-label {{field.displayName}}
-            input.form-control(type='text', name='{{field.name}}', ng-model='field.value', ng-required='{{field.required}}')
-        pre {{data.form | json}}
+            input.form-control(type='text', name='{{field.name}}', ng-model='field.value', ng-required='{{field.required}}', placeholder='{{field.placeholder}}')
+          button.btn.btn-success(type='button', ng-disabled='submitForm.$invalid') Submit

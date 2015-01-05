@@ -17,6 +17,7 @@ FormRenderApp.controller('MainCtrl', function($scope, $http, $routeParams) {
     console.log('url: ' + url);
     $scope.data = {};
     $http.get(url).success(function(data){
-       $scope.data.form = data;
+        delete data._id;
+        $scope.data.form = data;
     });
 });

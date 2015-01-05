@@ -1,4 +1,4 @@
-var FormBuilderApp = angular.module('FormBuilderApp', ['ngRoute']);
+var FormBuilderApp = angular.module('FormBuilderApp', ['ngRoute', 'ui.sortable']);
 
 FormBuilderApp.config(function($routeProvider){
     $routeProvider
@@ -42,6 +42,20 @@ FormBuilderApp.controller('DetailCtrl', function($scope, $http, $routeParams){
 
     $scope.newField = {};
 
+    $scope.sortableOptions = {
+        stop: function(e, ui) {
+            //console.log(ui.item.scope().field);
+            for(i = 0; i < $scope.form.fields.length; i++) {
+                console.log(i);
+                console.log($scope.form.fields[i]);
+                $scope.form.fields[i].ordinal = i + 1;
+            }
+        },
+        cursor: 'move',
+        axis: 'y',
+        containment: 'parent'
+    };
+
     $http.get('/api/dataTypes').success(function(results){
        $scope.dataTypes = results;
     });
@@ -62,6 +76,10 @@ FormBuilderApp.controller('DetailCtrl', function($scope, $http, $routeParams){
                 console.log('err: ' + err);
             });
         }
+    };
+
+    $scope.moveUp = function(field) {
+
     };
 
     $scope.addField = function(newField) {

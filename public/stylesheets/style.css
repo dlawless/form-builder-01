@@ -7,7 +7,8 @@ body    {
 }
 
 .table-fixed {
-    min-width: 900px;
+    min-width: 800px;
+    max-width: 800px;
 }
 
 .navbar {
@@ -15,7 +16,7 @@ body    {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 1.8em;
 }
 
 .ng-invalid {
@@ -25,3 +26,4 @@ h1 {
 .ng-valid {
     border-color: green;
 }
+
