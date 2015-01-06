@@ -31,5 +31,11 @@ FormBuilderApp.controller('ResponseListCtrl', function($scope, $http, $routePara
         }).error(function(data) {
             console.log('error: ' + data);
         });
+    };
+
+    $scope.orderFieldsByLength = function(form) {
+        return form.fields.length;
     }
+
+
 });
