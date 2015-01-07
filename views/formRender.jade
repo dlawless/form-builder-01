@@ -18,7 +18,11 @@ html(ng-app='FormRenderApp')
           h1 {{data.form.displayName}}
           div.form-group(ng-repeat='field in data.form.fields | orderBy: "ordinal"')
             label.control-label {{field.displayName}}
-            input.form-control(type='text', name='{{field.name}}', ng-model='field.value', ng-required='{{field.required}}', placeholder='{{field.placeholder}}')
+            div(ng-switch on='field.dataType')
+              div(ng-switch-when='list of options')
+                select.form-control(name='{{field.name}}', ng-options='o as o for o in field.options', ng-model='field.value')
+              div(ng-switch-default) This is not a list
+                input.form-control(type='text', name='{{field.name}}', ng-model='field.value', ng-required='{{field.required}}', placeholder='{{field.placeholder}}')
           button.btn.btn-success(type='submit', ng-disabled='submitForm.$invalid') Submit
       script(type='text/ng-template', id='thanks-for-submitting-template.html')
         h1 Thanks for providing your information. This would be a customized message based on the customer and the form selected...

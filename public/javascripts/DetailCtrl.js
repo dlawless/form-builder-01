@@ -16,7 +16,6 @@ FormBuilderApp.controller('DetailCtrl', function($scope, $http, $routeParams, $l
 
     $scope.sortableOptions = {
         stop: function(e, ui) {
-            //console.log(ui.item.scope().field);
             $scope.adjustOrdinals();
         },
         cursor: 'move',
@@ -56,7 +55,7 @@ FormBuilderApp.controller('DetailCtrl', function($scope, $http, $routeParams, $l
             console.log($scope.form.fields[i]);
             $scope.form.fields[i].ordinal = i + 1;
         }
-    }
+    };
 
     $scope.addField = function(newField) {
         if(!$scope.form.fields){
@@ -71,22 +70,53 @@ FormBuilderApp.controller('DetailCtrl', function($scope, $http, $routeParams, $l
         $scope.form.fields.splice(index, 1);
     };
 
+    $scope.items = ['item1','item2','item3','item4'];
+
     $scope.addListItems = function(field) {
+        $scope.selectedFieldIndex = $scope.form.fields.indexOf(field);
         var modalInstance = $modal.open({
             templateUrl: 'field-list-items.html',
-            controller: '',
-            size: 'large',
+            controller: 'FieldListItemsCtrl',
+            size: 'lg',
             resolve: {
                 items: function() {
-
+                    if(field.options) {
+                        return field.options;
+                    } else {
+                        return [];
+                    }
                 }
             }
         });
 
-        modalInstance.result.then(function(selectedItem) {
-            $scope.selected = selectedItem;},
+        modalInstance.result.then(function(items) {
+                console.log(items);
+                $scope.form.fields[$scope.selectedFieldIndex].options = items;},
             function() {
                 console.log('Modal dismissed at: ' + new Date());
         });
     };
+});
+
+FormBuilderApp.controller('FieldListItemsCtrl', function($scope, $modalInstance, items) {
+    $scope.items = angular.copy(items);
+
+    $scope.submitModal = function() {
+        $modalInstance.close($scope.items);
+    };
+
+    $scope.cancelModal = function() {
+        $modalInstance.dismiss('cancel');
+    };
+
+    $scope.removeItem = function(item) {
+        var index = $scope.items.indexOf(item);
+        $scope.items.splice(index, 1);
+    };
+
+    $scope.addItem = function(newItem) {
+        $scope.items.push(angular.copy(newItem));
+        $scope.newItem = null;
+    };
+
 });

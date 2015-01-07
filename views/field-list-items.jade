@@ -1,8 +1,19 @@
 div.modal-header
   h3.modal-title List Items
 div.model-body
-  ul
-    li(ng-repeat='item in items') {{item}}
+  table(style='margin-left: 20px;')
+    tr(ng-repeat='item in items')
+      td {{item}}
+      td(style='padding-left: 20px; padding-top: 10px; padding-bottom: 10px;')
+        button.btn.btn-danger.btn-sm(type='button', ng-click='removeItem(item)')
+          span.glyphicon.glyphicon-remove(aria-hidden='true')
+  table(style='margin-left: 20px;')
+    tr
+      td
+        input.form-control(ng-model='newItem')
+      td
+        button.btn.btn-success.btn-sm(type='button', ng-click='addItem(newItem)', ng-show='newItem')
+          span.glyphicon.glyphicon-plus(aria-hidden='true')
 div.modal-footer
   button.btn.btn-primary(ng-click='submitModal()') Ok
   button.btn.btn-warning(ng-click='cancelModal()') Cancel

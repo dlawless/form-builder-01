@@ -6,6 +6,10 @@ FormBuilderApp.config(function($routeProvider){
             templateUrl: 'detail-template.html',
             controller: 'DetailCtrl'
         })
+        .when('/edit/:id', {
+            templateUrl: 'detail-template.html',
+            controller: 'DetailCtrl'
+        })
         .when('/list',{
             templateUrl: 'list-template.html',
             controller: 'ListCtrl'
@@ -13,10 +17,6 @@ FormBuilderApp.config(function($routeProvider){
         .when('/responses/:id', {
             templateUrl: 'response-list-template.html',
             controller: 'ResponseListCtrl'
-        })
-        .when('/edit/:id', {
-            templateUrl: 'detail-template.html',
-            controller: 'DetailCtrl'
         })
         .otherwise({
             redirectTo: '/'
