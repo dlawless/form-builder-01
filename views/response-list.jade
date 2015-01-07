@@ -1,15 +1,5 @@
 span Responses: {{data.forms.length}}
 table.table.table-condensed.table-striped
-   thead
-      tr(ng-repeat='form in data.forms | limitTo: 1 ')
-         th(ng-repeat='field in form.fields |  filter:{required:"true"}') {{field.displayName}}
-         th
-   tbody
-      tr(ng-repeat='form in data.forms')
-         td(ng-repeat='field in form.fields | filter:{required:"true"}') {{field.value}}
-         td
-            a.btn.btn-sm.btn-primary(href='#/responseDetails/{{form._id}}') Details
-table.table.table-condensed.table-striped
    tbody
       tr(ng-repeat='form in data.forms')
          td(ng-repeat='field in form.fields') {{field.value}}
