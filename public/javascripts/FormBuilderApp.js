@@ -1,4 +1,4 @@
-var FormBuilderApp = angular.module('FormBuilderApp', ['ngRoute', 'ui.sortable']);
+var FormBuilderApp = angular.module('FormBuilderApp', ['ngRoute', 'ui.sortable', 'ui.bootstrap']);
 
 FormBuilderApp.config(function($routeProvider){
     $routeProvider
@@ -21,21 +21,4 @@ FormBuilderApp.config(function($routeProvider){
         .otherwise({
             redirectTo: '/'
         });
-});
-
-FormBuilderApp.controller('ResponseListCtrl', function($scope, $http, $routeParams, $location) {
-    $scope.data = {};
-    if($routeParams.id){
-        $http.get('/api/formResponses/' + $routeParams.id).success(function(results){
-            $scope.data.forms = results;
-        }).error(function(data) {
-            console.log('error: ' + data);
-        });
-    };
-
-    $scope.orderFieldsByLength = function(form) {
-        return form.fields.length;
-    }
-
-
 });

@@ -1,4 +1,4 @@
-FormBuilderApp.controller('DetailCtrl', function($scope, $http, $routeParams, $location){
+FormBuilderApp.controller('DetailCtrl', function($scope, $http, $routeParams, $location, $modal){
     // If there's an id it's an existing form otherwise assume new
     if(!$routeParams.id){
         $scope.form = {
@@ -69,5 +69,24 @@ FormBuilderApp.controller('DetailCtrl', function($scope, $http, $routeParams, $l
     $scope.removeField = function(field) {
         var index = $scope.form.fields.indexOf(field);
         $scope.form.fields.splice(index, 1);
+    };
+
+    $scope.addListItems = function(field) {
+        var modalInstance = $modal.open({
+            templateUrl: 'field-list-items.html',
+            controller: '',
+            size: 'large',
+            resolve: {
+                items: function() {
+
+                }
+            }
+        });
+
+        modalInstance.result.then(function(selectedItem) {
+            $scope.selected = selectedItem;},
+            function() {
+                console.log('Modal dismissed at: ' + new Date());
+        });
     };
 });

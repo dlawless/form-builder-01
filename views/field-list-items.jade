@@ -1,0 +1,8 @@
+div.modal-header
+  h3.modal-title List Items
+div.model-body
+  ul
+    li(ng-repeat='item in items') {{item}}
+div.modal-footer
+  button.btn.btn-primary(ng-click='submitModal()') Ok
+  button.btn.btn-warning(ng-click='cancelModal()') Cancel
