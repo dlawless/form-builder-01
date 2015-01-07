@@ -33,10 +33,10 @@ form.form(name='detailForm', ng-submit='saveForm()', novalidate)
           td(style='max-width: 30px;')
             button.btn.btn-danger.btn-sm(type='button', ng-click='removeField(field)')
               span.glyphicon.glyphicon-remove(aria-hidden='true')
-            button.btn.btn-success.btn-sm(type='button', ng-click='addListItems(field)', ng-show='field.dataType == "list"')
+            button.btn.btn-success.btn-sm(type='button', ng-click='addListItems(field)', ng-show='field.dataType == "list of options"')
               span.glyphicon.glyphicon-plus(aria-hidden='true')
   button.btn.btn-primary(ng-disabled='detailForm.$invalid') Save
-  pre {{form.fields | json}}
+  //pre {{form.fields | json}}
 fieldset(style='margin-top: 20px;')
   legend Add a Field
   form(name='newFieldForm', novalidate)
