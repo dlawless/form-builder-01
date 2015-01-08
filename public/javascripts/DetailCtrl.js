@@ -33,6 +33,7 @@ FormBuilderApp.controller('DetailCtrl', function($scope, $http, $routeParams, $l
         if($scope.form._id) {
             $http.put('/api/forms/' + $scope.form._id, $scope.form).success(function (result) {
                 console.log(result);
+                $location.path('/list');
             }).error(function (err) {
                 console.log('err: ' + err);
             });
