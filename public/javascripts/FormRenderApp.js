@@ -1,4 +1,4 @@
-var FormRenderApp = angular.module('FormRenderApp', ['ngRoute']);
+var FormRenderApp = angular.module('FormRenderApp', ['ngRoute', 'ui.bootstrap']);
 
 FormRenderApp.config(function($routeProvider){
    $routeProvider
@@ -35,5 +35,17 @@ FormRenderApp.controller('MainCtrl', function($scope, $http, $location) {
         }).error(function(err) {
             console.log('err: ' + err);
         });
+    };
+
+    $scope.openCalendar = function($event) {
+        console.log('openCalendar');
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+        formatYear: 'yy',
+        startingDay: 1
     };
 });

@@ -27,3 +27,4 @@ h1 {
     border-color: green;
 }
 
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
